@@ -12,6 +12,7 @@ import java.util.Scanner;
  * [1,2]
  * 说明
  * 20+70=90
+ * 方法：使用整型数组一个一个判断新建map是否含有该值，没有的话用target减数对应的值，并存入到新的map对应位置上，之后继续判断，如果有去除两个下标+1的值
  */
 public class test02 {
 
