@@ -1,10 +1,15 @@
 package com;
 
+import java.lang.reflect.Array;
+
 public class test05 {
 
+    static int []f = new int[50];//默认值为0
+
     public static void main(String[] args) {
-        System.out.println(jumpFloor1(7));
-        System.out.println(jumpFloor2(7));
+        //System.out.println(jumpFloor1(7));
+        //System.out.println(jumpFloor2(7));
+        System.out.println(jumpFloor2_1(7));
     }
 
     /***
@@ -21,17 +26,13 @@ public class test05 {
      * @return
      */
     public static int jumpFloor1(int target) {
-        if(target==0)  //F(0)=0
-            return 1;
-        if(target==1)  //F(1)=1
-            return 1;
-        int si_1=1;    //F(n-1)=1
-        int si_2=1;    //F(n-2)=1
+        int si_0=1;    //F(0)=1
+        int si_1=1;    //F(1)=1
         int result=0;
         for(int i=2;i<=target;i++){
-            result=si_1+si_2;  //F（n）=F（n-1）+F（n-2）  F（2）=F（1）+F（0）  F（3）=F（2）+F（1）
-            si_2=si_1;
-            si_1=result;
+            result=si_0+si_1;  //F（n）=F（n-1）+F（n-2）  F（2）=F（1）+F（0）  F（3）=F（2）+F（1）
+            si_1=si_0;
+            si_0=result;
         }
         return result;
     }
@@ -48,5 +49,20 @@ public class test05 {
         if(target==2)
             return 2;
         return jumpFloor2(target-1)+jumpFloor2(target-2);
+    }
+
+    /***
+     * 递归2.0，使用数组存储计算值，避免重复计算
+     * @param target
+     * @return
+     */
+    public static int jumpFloor2_1(int target){
+        if (target <= 1){
+            return 1;
+        }
+        if (f[target] > 0){ //如果数组中存储的有计算结果就直接取值
+            return f[target];
+        }
+        return f[target] = jumpFloor2_1(target - 1) + jumpFloor2_1(target - 2);
     }
 }
