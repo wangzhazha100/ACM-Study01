@@ -2,7 +2,7 @@ package String;
 
 import java.util.Scanner;
 
-/***
+/***密码校验
  * 1.长度超过8位
  * 2.包括大小写字母.数字.其它符号,以上四种至少三种
  * 3.不能有长度大于2的包含公共元素的子串重复 （注：其他符号不含空格或换行）(例：021Abc9Abc1 ,Abc重复长度超过2个）
@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class test02 {
 
     public static boolean checkLength(String password){
-        if (password==null || password.length()<=8)
+        if (password == null || password.length() <= 8)
             return false;
         return true;
     }
@@ -62,7 +62,7 @@ public class test02 {
         Scanner cin = new Scanner(System.in);
         while (cin.hasNextLine()) {
             String psw = cin.nextLine();
-            if (checkLength(psw)&&checkCharKinds(psw)&&checkCharRepeat(psw))
+            if (checkLength(psw) && checkCharKinds(psw) && checkCharRepeat(psw))
                 System.out.println("OK");
             else
                 System.out.println("NG");
